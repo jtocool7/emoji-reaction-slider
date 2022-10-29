@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Emoji Reaction Slider!</title>
+  <style>
+    *{
+      padding:0px;
+      margin:0px;
+    }
+    
+    #hero{
+      width:100%;
+      height:100%;
+      position:absolute;
+      background:#2a2c36;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    
+    #sidekick{
+      width:80%;
+      height:80%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-flow:column wrap;
+    }
+    
+    #slider{
+      width:100%;
+      height:100%;
+      display:flex;
+      overflow:hidden;
+      /*box-shadow: inset 0 0 12px 12px white, inset 0 0 3px 2px white;*/
+      background: linear-gradient(to right, #0025ff, #00ccff, #31e9ff, #fff4be, #ffc500, #ff8400, #ff1200);
+ 
+    }
+    
+    #preslider{
+      width:100%;
+      height:12%;
+      border-radius:30px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+      margin-top:8%;
+      background: linear-gradient(to right, #0025ff, #00ccff, #31e9ff, #fff4be, #ffc500, #ff8400, #ff1200);
+      
+    }
+    
+    .child{
+      width:15%;
+      /*border:10px solid black;*/
+      height:100%;
+      opacity:0.01;
+    }
+    
+    #imgcon{
+      width:30%;
+      aspect-ratio:1/1;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    
+    #one{
+      background:#0025ff;
+      
+    }
+    
+    #two{
+      background:#00ccff;
+    }
+    
+     #three{
+      background:#31e9ff;
+    }
+    
+    #four{
+      background:#fff4be;
+    }
+    
+    #five{
+      background:#ffc500;
+    }
+    
+    #six{
+      background:#ff8400;
+    }
+    
+    #seven{
+      background:#ff1200; 
+    }
+    
+    .emoji{
+      width:100%;
+      animation: bounce 1s infinite;
+      transition:1s;
+    }
+    
+    #slide{
+      height:9%;
+      width:11%;
+      position:relative;
+      position:absolute;
+      border-radius:50px;
+      border: 9px solid #fff4be;
+      transition: 1s;
+      opacity:1;
+    }
+    
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateY(0);
+          transform:scale(1);
+        }
+        40% {
+          transform: translateY(-30px);
+          transform:scale(2);
+        }
+        60% {
+          transform: translateY(-15px);
+          transform:scale(1.5);
+        }
+      }
+  </style>
+</head>
+<body>
+  <div id="hero">
+    <div id="sidekick">
+    <div id="imgcon">
+      <img id="emoji" class="emoji" src="https://raw.githubusercontent.com/gitperson123/emoji-slider-reaction/main/slightly_smiling_face_3d.png">
+    </div>
+    <div id="preslider">
+          <div id="slide" onClick="func1()">
+      
+      </div>
+      <div id="slider">
+       <div id="one" class="child" imgurl="https://raw.githubusercontent.com/gitperson123/emoji-slider-reaction/main/ice_3d.png">
+       
+       </div>
+       <div id="two" class="child" imgurl="https://github.com/gitperson123/emoji-slider-reaction/blob/main/cold_face_3d.png?raw=true">
+       
+       </div>
+       <div id="three" class="child" imgurl="https://raw.githubusercontent.com/gitperson123/emoji-slider-reaction/main/anxious_face_with_sweat_3d.png">
+       
+       </div>
+       <div id="four" class="child" imgurl="https://raw.githubusercontent.com/gitperson123/emoji-slider-reaction/main/slightly_smiling_face_3d.png">
+       
+       </div>
+       <div id="five" class="child" imgurl="https://github.com/gitperson123/emoji-slider-reaction/blob/main/smiling_face_with_sunglasses_3d.png?raw=true">
+       
+       </div>
+       <div id="six" class="child" imgurl="https://raw.githubusercontent.com/gitperson123/emoji-slider-reaction/main/hot_face_3d.png">
+       
+       </div>
+       <div id="seven" class="child" imgurl="https://github.com/gitperson123/emoji-slider-reaction/blob/main/fire_3d.png?raw=true">
+       
+       </div>
+      </div>
+       </div>
+    </div>
+  </div>
+</body>
+<script>
+
+const slider = document.getElementById("slide")
+const first = document.getElementById("one");
+const img = document.getElementById("emoji");
+
+function getOffset(el) {
+  const rect = el.getBoundingClientRect();
+  return {
+    left: rect.left + window.scrollX,
+    top: rect.top + window.scrollY,
+    right: rect.right - window.scrollX
+  };
+}
+
+slider.style.width = getOffset(first).right + "px" - getOffset(first).left + "px";
+
+setTimeout(function(){
+img.style.animationPlayState = 'paused';
+},1000)
+
+function clickEvent(evt){
+//////////////////////////////////////////////////////////////////////
+slider.style.left = getOffset(evt.target).left - 9 + "px";
+img.style.animationPlayState = 'paused';
+img.style.animationPlayState = 'running';
+setTimeout(function(){
+img.style.animationPlayState = 'paused';
+},1000)
+//////////////////////////////////////////////////////////////////////
+switch (evt.target.id) {
+case "one":
+slider.style.borderColor = "#0025ff";
+img.src = evt.target.getAttribute('imgurl');
+break;
+///////////////////////////////////////
+case "two":
+slider.style.borderColor = "#00ccff";
+img.src = evt.target.getAttribute('imgurl');
+break;
+///////////////////////////////////////
+case "three":
+slider.style.borderColor = "#31e9ff";
+img.src = evt.target.getAttribute('imgurl');
+break;
+///////////////////////////////////////
+case "four":
+slider.style.borderColor = "#fff4be";
+img.src = evt.target.getAttribute('imgurl');
+break;
+///////////////////////////////////////
+case "five":
+slider.style.borderColor = "#ffc500";
+img.src = evt.target.getAttribute('imgurl');
+break;
+///////////////////////////////////////
+case "six":
+slider.style.borderColor = "#ff8400";
+img.src = evt.target.getAttribute('imgurl');
+break;
+///////////////////////////////////////
+case "seven":
+slider.style.borderColor = "#ff1200";
+img.src = evt.target.getAttribute('imgurl');
+break;
+}
+}
+
+for (var item of document.querySelectorAll(".child")) {
+ item.addEventListener("click", clickEvent);
+}
+
+slider.style.left = getOffset(four).left - 9 + "px";
+
+</script>
+<!-- https://github.com/microsoft/fluentui-emoji/blob/main/assets/Ice/3D/ice_3d.png -->
+</html>
